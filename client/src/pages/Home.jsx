@@ -132,13 +132,9 @@ export default function Home() {
             {banners.length === 0 ? (
               <div className="carousel-item active hero">
                 <div className="container text-center">
-                  <h1>Vinno Jaya</h1>
-                  <h3 className="mt-3">Biro Jasa Bekasi</h3>
-                  <p className="mt-3">
-                    Melayani pengurusan{" "}
-                    <b>STNK, SIM, Mutasi, Balik Nama, KIR, Paspor</b> dan
-                    lainnya. Cepat, aman, dan terpercaya!
-                  </p>
+                  <h1>JASA KONSULTAN VINNOJAYA</h1>
+                  <h3 className="mt-3">STNK & BPKB</h3>
+
                   <div className="mt-4">
                     <a
                       href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -192,13 +188,9 @@ export default function Home() {
                     className="container text-center d-flex flex-column justify-content-center align-items-center"
                     style={{ minHeight: "500px" }}
                   >
-                    <h1>Vinno Jaya</h1>
-                    <h3 className="mt-3">Biro Jasa Bekasi</h3>
-                    <p className="mt-3">
-                      Melayani pengurusan{" "}
-                      <b>STNK, SIM, Mutasi, Balik Nama, KIR, Paspor</b> dan
-                      lainnya. Cepat, aman, dan terpercaya!
-                    </p>
+                    <h1>JASA KONSULTAN VINNOJAYA</h1>
+                    <h3 className="mt-3">STNK & BPKB</h3>
+
                     <div className="mt-4">
                       <a
                         href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -295,9 +287,6 @@ export default function Home() {
               <h2 className="mb-2 fw-bold" style={{ color: "#131311ff" }}>
                 Sekilas Tentang Kami
               </h2>
-              <h4 className="mb-3" style={{ color: "#A67F2E" }}>
-                Vinnojaya
-              </h4>
 
               <p style={{ lineHeight: "1.8", color: "#555" }}>
                 Vinnojaya adalah perusahaan yang bergerak dalam bidang jasa,
@@ -386,20 +375,30 @@ export default function Home() {
                 }}
               >
                 <div
-                  className="me-3 d-flex align-items-center justify-content-center"
+                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
                   style={{
                     width: 50,
                     height: 50,
                     background: "#BE9539",
                     borderRadius: "10px",
                     flexShrink: 0,
+                    position: "relative",
                   }}
                 >
-                  <FaUser size={24} color="white" />
+                  <img
+                    src="/stnk.png"
+                    alt="STNK Service Icon"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      opacity: 0.9,
+                    }}
+                  />
                 </div>
                 <div>
                   <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
-                    SIM
+                    STNK
                   </h5>
                 </div>
               </div>
@@ -424,20 +423,30 @@ export default function Home() {
                 }}
               >
                 <div
-                  className="me-3 d-flex align-items-center justify-content-center"
+                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
                   style={{
                     width: 50,
                     height: 50,
                     background: "#BE9539",
                     borderRadius: "10px",
                     flexShrink: 0,
+                    position: "relative",
                   }}
                 >
-                  <FaLock size={24} color="white" />
+                  <img
+                    src="/sim.png"
+                    alt="SIM Service Icon"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      opacity: 0.9,
+                    }}
+                  />
                 </div>
                 <div>
                   <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
-                    Pengurusan BBN
+                    SIM
                   </h5>
                 </div>
               </div>
@@ -464,24 +473,31 @@ export default function Home() {
                 }}
               >
                 <div
-                  className="me-3 d-flex align-items-center justify-content-center"
+                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
                   style={{
                     width: 50,
                     height: 50,
                     background: "#BE9539",
                     borderRadius: "10px",
                     flexShrink: 0,
+                    position: "relative",
                   }}
                 >
-                  <FaFileAlt size={24} color="white" />
+                  <img
+                    src="/bpkb.png"
+                    alt="BPKB Service Icon"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      opacity: 0.9,
+                    }}
+                  />
                 </div>
                 <div>
                   <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
-                    Pengurusan STNK
+                    BPKB
                   </h5>
-                  <p className="mb-0 small text-muted">
-                    Perpanjangan & pengurusan STNK
-                  </p>
                 </div>
               </div>
 
@@ -505,24 +521,31 @@ export default function Home() {
                 }}
               >
                 <div
-                  className="me-3 d-flex align-items-center justify-content-center"
+                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
                   style={{
                     width: 50,
                     height: 50,
                     background: "#BE9539",
                     borderRadius: "10px",
                     flexShrink: 0,
+                    position: "relative",
                   }}
                 >
-                  <FaMapMarkerAlt size={24} color="white" />
+                  <img
+                    src="/paspor.png"
+                    alt="PASPOR Service Icon"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      opacity: 0.9,
+                    }}
+                  />
                 </div>
                 <div>
                   <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
-                    Pengurusan Mutasi
+                    PASPOR
                   </h5>
-                  <p className="mb-0 small text-muted">
-                    Mutasi kendaraan antar daerah
-                  </p>
                 </div>
               </div>
             </div>

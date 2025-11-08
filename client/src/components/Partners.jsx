@@ -103,10 +103,10 @@ export default function Partners() {
     >
       <div className="container text-center">
         <h4
-          className="mb-4"
+          className="mb-4 justify-content-center"
           style={{ color: "#201f1dff", fontWeight: "bold", fontSize: "2rem" }}
         >
-          Mitra Kami
+          REKANAN KAMI
         </h4>
         <div
           style={{

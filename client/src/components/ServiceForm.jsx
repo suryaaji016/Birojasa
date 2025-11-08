@@ -13,9 +13,9 @@ export default function ServiceForm() {
     tujuan: "",
     noPolisi: "",
     cabang: "",
-    // tambahan untuk Perpanjang: apakah form tambahan KTP asli sesuai STNK tersedia
+    // tambahan untuk Perpanjang STNK: apakah form tambahan KTP asli sesuai STNK tersedia
     tambahanKTP: "",
-    // tambahan untuk Balik Nama (pemilik baru)
+    // tambahan untuk Balik Nama Kendaraan (pemilik baru)
     namaBaru: "",
     noTelpBaru: "",
   };
@@ -25,15 +25,19 @@ export default function ServiceForm() {
   // mapping kategori -> layanan (services)
   const servicesByCategory = {
     // fallback — will be replaced by server config if available
-    Perpanjang: ["STNK TAHUNAN", "STNK LIMA TAHUNAN", "GANTI NOPOL"],
-    "Balik Nama": ["SAMA WILAYAH", "MUTASI ANTAR SAMSAT", "MUTASI LUAR DAERAH"],
+    "Perpanjang STNK": ["STNK TAHUNAN", "STNK LIMA TAHUNAN", "GANTI NOPOL"],
+    "Balik Nama Kendaraan": [
+      "SAMA WILAYAH",
+      "MUTASI ANTAR SAMSAT",
+      "MUTASI LUAR DAERAH",
+    ],
     "Pindah Alamat": [
       "SAMA WILAYAH",
       "MUTASI ANTAR WILAYAH",
       "MUTASI LUAR DAERAH",
     ],
-    "SIM A": ["BARU", "Perpanjang"],
-    "SIM C": ["BARU", "Perpanjang"],
+    "SIM A": ["BARU", "Perpanjang STNK"],
+    "SIM C": ["BARU", "Perpanjang STNK"],
     "STNK HILANG": ["STNK HILANG"],
     "REVISI STNK": ["REVISI STNK"],
     "BPKB DUPLIKAT (BPKB HILANG)": ["BPKB DUPLIKAT (BPKB HILANG)"],
@@ -89,10 +93,10 @@ export default function ServiceForm() {
 
   // allowed categories to show in the public form (case-insensitive)
   const allowedCategories = [
-    "Perpanjang",
-    "Balik Nama",
+    "Perpanjang STNK",
+    "Balik Nama Kendaraan",
     "Pindah Alamat",
-    "STNK Cabut Berkas",
+    "Cabut Berkas",
   ];
 
   const getAvailableCategories = () => {
@@ -147,16 +151,16 @@ export default function ServiceForm() {
       return "No. Telepon harus diisi";
     if (!form.category) return "Pilih kategori layanan";
     if (!form.service) return "Pilih layanan";
-    // require daerah for Perpanjang category or any STNK-related service
+    // require daerah for Perpanjang STNK category or any STNK-related service
     if (
-      isCategory(form.category, "Perpanjang") ||
+      isCategory(form.category, "Perpanjang STNK") ||
       (form.service && normalize(form.service).includes("stnk"))
     ) {
       if (!form.daerah || form.daerah.trim() === "")
         return "Daerah STNK harus diisi";
     }
-    // Balik Nama validations: check category (any Balik Nama subservice requires these)
-    if (isCategory(form.category, "Balik Nama")) {
+    // Balik Nama Kendaraan validations: check category (any Balik Nama Kendaraan subservice requires these)
+    if (isCategory(form.category, "Balik Nama Kendaraan")) {
       if (!form.asal || form.asal.trim() === "") return "Asal STNK harus diisi";
       if (!form.tujuan || form.tujuan.trim() === "")
         return "Tujuan STNK harus diisi";
@@ -184,14 +188,14 @@ export default function ServiceForm() {
     };
     if (
       form.service &&
-      (normalize(form.service).includes("perpanjang") ||
+      (normalize(form.service).includes("Perpanjang STNK") ||
         normalize(form.service).includes("stnk"))
     )
       payload.daerah = form.daerah;
     // include tambahanKTP info if user interacted with it
     if (form.tambahanKTP) payload.tambahanKTP = form.tambahanKTP;
     if (
-      isCategory(form.category, "Balik Nama") ||
+      isCategory(form.category, "Balik Nama Kendaraan") ||
       (form.service && normalize(form.service).includes("balik"))
     ) {
       payload.asal = form.asal;
@@ -229,7 +233,7 @@ export default function ServiceForm() {
           paddingBottom: "10px",
         }}
       >
-        Form Layanan Biro Jasa
+        KONSULTASI DISINI
       </h4>
       <form onSubmit={handleSubmit}>
         <input
@@ -292,7 +296,7 @@ export default function ServiceForm() {
           }
           onBlur={(e) => (e.target.style.boxShadow = "none")}
         >
-          <option value="">-- Pilih Kategori --</option>
+          <option value="">-- Pilih Layanan --</option>
           {/* If server config available, list all categories from it; otherwise fallback to the four allowed */}
           {getAvailableCategories().map((k) => (
             <option key={k} value={k}>
@@ -350,8 +354,8 @@ export default function ServiceForm() {
             </div>
           )}
 
-        {/* Perpanjang fields (show when category is Perpanjang or selected service is STNK-related) */}
-        {(isCategory(form.category, "Perpanjang") ||
+        {/* Perpanjang STNK fields (show when category is Perpanjang STNK or selected service is STNK-related) */}
+        {(isCategory(form.category, "Perpanjang STNK") ||
           (form.service && normalize(form.service).includes("stnk"))) && (
           <>
             <select
@@ -367,7 +371,7 @@ export default function ServiceForm() {
               }}
               value={form.daerah}
               onChange={handleChange}
-              required={isCategory(form.category, "Perpanjang")}
+              required={isCategory(form.category, "Perpanjang STNK")}
               onFocus={(e) =>
                 (e.target.style.boxShadow =
                   "0 0 0 0.2rem rgba(190, 149, 57, 0.25)")
@@ -406,7 +410,7 @@ export default function ServiceForm() {
               ))}
             </select>
 
-            {/* Perpanjang tambahan: show doc list and a simple Ada/Tidak radio */}
+            {/* Perpanjang STNK tambahan: show doc list and a simple Ada/Tidak radio */}
             <div
               className="card mb-3 p-3"
               style={{
@@ -473,8 +477,8 @@ export default function ServiceForm() {
           </>
         )}
 
-        {/* Balik Nama: show two-part form (asal/tujuan as selects like Perpanjang) */}
-        {isCategory(form.category, "Balik Nama") && (
+        {/* Balik Nama Kendaraan: show two-part form (asal/tujuan as selects like Perpanjang STNK) */}
+        {isCategory(form.category, "Balik Nama Kendaraan") && (
           <>
             <select
               name="asal"
@@ -496,7 +500,7 @@ export default function ServiceForm() {
               }
               onBlur={(e) => (e.target.style.boxShadow = "none")}
             >
-              <option value="">-- Pilih Asal STNK --</option>
+              <option value="">-- Wilayah Asal STNK --</option>
               {[
                 "JAKARTA TIMUR",
                 "JAKARTA SELATAN",
@@ -548,7 +552,7 @@ export default function ServiceForm() {
               }
               onBlur={(e) => (e.target.style.boxShadow = "none")}
             >
-              <option value="">-- Pilih Tujuan STNK --</option>
+              <option value="">-- Wilayah Tujuan STNK --</option>
               {[
                 "JAKARTA TIMUR",
                 "JAKARTA SELATAN",
