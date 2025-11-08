@@ -1,0 +1,622 @@
+/* =========================== */
+/* 🌐 GLOBAL STYLE (RESET)     */
+/* =========================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  color: #212529;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =========================== */
+/* 📱 MOBILE RESPONSIVE BASE   */
+/* =========================== */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+  }
+
+  h4 {
+    font-size: 1.1rem !important;
+  }
+
+  h5 {
+    font-size: 1rem !important;
+  }
+
+  .btn-lg {
+    padding: 0.6rem 1.5rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* =========================== */
+/* 🌟 NAVBAR                   */
+/* =========================== */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 0.8rem 0;
+}
+
+.navbar .navbar-brand {
+  color: #c9980b !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar .navbar-brand:hover {
+  color: #0b5ed7 !important;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 0;
+  }
+
+  .navbar .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .navbar-collapse {
+    background-color: white;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav {
+    gap: 0.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 1rem !important;
+  }
+}
+
+/* =========================== */
+/* 🦸 HERO SECTION              */
+/* =========================== */
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0d6efd, #0072ff);
+  color: white;
+  padding: 5rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  color: #e9ecef;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero h3 {
+    font-size: 1.25rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+}
+
+.carousel-item {
+  position: relative;
+}
+
+.carousel-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.carousel-item .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================== */
+/* 🧾 FORM LAYANAN             */
+/* =========================== */
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+.card h4 {
+  font-weight: 700;
+  color: #161616;
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+
+.btn-primary {
+  background-color: #c9980b;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #c9980b;
+}
+
+.btn-success {
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-success:hover {
+  background-color: #198754;
+}
+
+/* =========================== */
+/* 💬 REVIEW SECTION           */
+/* =========================== */
+.review-section {
+  margin-top: 5rem;
+  overflow: hidden;
+}
+
+.review-section h3 {
+  font-weight: 700;
+  color: #212529;
+}
+
+/* Horizontal review slider - multiple cards visible */
+.review-horizontal-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.review-horizontal-slider {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+}
+
+.review-card-wrapper {
+  flex: 0 0 auto;
+  width: 320px;
+}
+
+@media (max-width: 768px) {
+  .review-section {
+    margin-top: 3rem;
+  }
+
+  .review-horizontal-container {
+    padding: 0 10px;
+  }
+
+  .review-card-wrapper {
+    width: 280px;
+  }
+
+  .review-horizontal-slider {
+    gap: 15px;
+  }
+}
+
+/* Ensure cards display properly */
+.review-card-wrapper .card {
+  height: 100%;
+  margin: 0;
+}
+
+.card {
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #e9ecef;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card-body {
+  padding: 1rem 1.25rem;
+}
+
+.card-body h6 {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #0d6efd;
+}
+
+/* =========================== */
+/* 📦 MODAL REVIEW             */
+/* =========================== */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  border-bottom: none;
+  background-color: #f8f9fa;
+}
+
+.modal-title {
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+/* =========================== */
+/* 👣 FOOTER                   */
+/* =========================== */
+footer {
+  background-color: #ffffff;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+footer small {
+  letter-spacing: 0.4px;
+}
+
+@media (max-width: 768px) {
+  footer {
+    font-size: 0.85rem;
+    padding: 2rem 0 !important;
+  }
+
+  footer h5 {
+    font-size: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  footer p,
+  footer a {
+    font-size: 0.85rem !important;
+  }
+
+  footer .row > div {
+    margin-bottom: 2rem;
+  }
+}
+
+/* =========================== */
+/* 📱 RESPONSIVE (MOBILE)      */
+/* =========================== */
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .card-img-top {
+    height: 160px;
+  }
+
+  /* Mobile review cards - smaller width */
+  .review-card-wrapper {
+    width: 280px;
+  }
+
+  .review-horizontal-container {
+    padding: 0 10px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Tablet view */
+  .review-card-wrapper {
+    width: 300px;
+  }
+}
+
+/* =========================== */
+/* 🤝 PARTNERS / MITRA         */
+/* =========================== */
+.partners-section {
+  background: #fff;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.partners-bar .partner-logo img {
+  height: 60px;
+  object-fit: contain;
+  filter: saturate(0.95);
+}
+.partners-bar .partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+}
+
+@media (max-width: 768px) {
+  .partners-bar .partner-logo img {
+    height: 40px;
+  }
+}
+
+/* =========================== */
+/* 📄 PAGE SPECIFIC RESPONSIVE */
+/* =========================== */
+
+/* Tentang Kami Page */
+@media (max-width: 768px) {
+  .container.my-5 {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .row.mb-5,
+  .row.g-4 {
+    margin-bottom: 2rem !important;
+  }
+
+  .col-md-3,
+  .col-md-9,
+  .col-md-5,
+  .col-md-7 {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Stack sidebar and content vertically */
+  .row > [class*="col-"] {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Reduce padding on cards */
+  .p-4 {
+    padding: 1.5rem !important;
+  }
+
+  .p-3 {
+    padding: 1rem !important;
+  }
+
+  /* Images responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Hubungi Kami - Maps */
+@media (max-width: 768px) {
+  iframe {
+    min-height: 250px !important;
+    width: 100% !important;
+    border-radius: 8px;
+  }
+
+  .btn-sm {
+    font-size: 0.8rem !important;
+    padding: 0.4rem 0.8rem !important;
+  }
+
+  /* Social media buttons stack */
+  .d-flex.gap-2 {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+
+  .d-flex.gap-2 .btn {
+    flex: 1 1 calc(50% - 0.25rem);
+    min-width: 120px;
+  }
+
+  /* Maps container */
+  .position-relative > a {
+    display: block;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Layanan - Table Responsive */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table {
+    font-size: 0.85rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.5rem !important;
+    white-space: nowrap;
+  }
+
+  /* Modal full width on mobile */
+  .modal-dialog {
+    margin: 0.5rem;
+    max-width: calc(100% - 1rem);
+  }
+
+  .modal-content {
+    border-radius: 12px;
+  }
+}
+
+/* Service Form Responsive */
+@media (max-width: 768px) {
+  .form-control,
+  .form-select {
+    font-size: 0.9rem !important;
+  }
+
+  .form-label {
+    font-size: 0.85rem !important;
+    font-weight: 600;
+  }
+
+  textarea.form-control {
+    min-height: 100px !important;
+  }
+
+  /* Service cards in Home page */
+  .d-flex.align-items-start.p-3 {
+    padding: 0.75rem !important;
+  }
+
+  .d-flex.align-items-start .me-3 {
+    margin-right: 0.75rem !important;
+  }
+
+  .d-flex.align-items-start h5 {
+    font-size: 0.95rem !important;
+  }
+
+  .d-flex.align-items-start .small {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* WhatsApp Button Responsive */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 15px !important;
+    right: 15px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .whatsapp-float img,
+  .whatsapp-float svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+/* =========================== */
+/* 🎨 UTILITY CLASSES MOBILE   */
+/* =========================== */
+@media (max-width: 768px) {
+  /* Overflow handling */
+  .overflow-x-hidden {
+    overflow-x: hidden !important;
+  }
+
+  /* Text sizing */
+  .fs-mobile-sm {
+    font-size: 0.875rem !important;
+  }
+
+  .fs-mobile-xs {
+    font-size: 0.75rem !important;
+  }
+
+  /* Spacing adjustments */
+  .py-mobile-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  .px-mobile-2 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Image max width */
+  img:not(.navbar-brand img) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Card adjustments */
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem !important;
+  }
+
+  /* Button full width on mobile */
+  .btn-block-mobile {
+    display: block;
+    width: 100%;
+  }
+}
