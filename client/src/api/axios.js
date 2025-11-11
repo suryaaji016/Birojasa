@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuthToken } from "../utils/cookies";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
 });
 
 // ✅ Interceptor: tambahkan Authorization header jika ada token

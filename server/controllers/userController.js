@@ -6,7 +6,7 @@ class UserController {
   static async register(req, res) {
     try {
       const { email, password, kodeUnik } = req.body;
-      
+
       // Validasi kode unik dari environment variable
       const ADMIN_CODE = process.env.ADMIN_UNIQUE_CODE || "@Vinno1Jaya2";
       if (kodeUnik !== ADMIN_CODE) {
@@ -15,7 +15,9 @@ class UserController {
 
       // Validasi input
       if (!email || !password) {
-        return res.status(400).json({ message: "Email dan password harus diisi" });
+        return res
+          .status(400)
+          .json({ message: "Email dan password harus diisi" });
       }
 
       if (password.length < 6) {
@@ -45,7 +47,9 @@ class UserController {
 
       // Validasi input
       if (!email || !password) {
-        return res.status(400).json({ message: "Email dan password harus diisi" });
+        return res
+          .status(400)
+          .json({ message: "Email dan password harus diisi" });
       }
 
       const user = await User.findOne({ where: { email } });
