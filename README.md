@@ -152,7 +152,7 @@ firebase deploy
 2. Deploy dari repository GitHub
 3. Platform akan otomatis build dan run
 
-**Live Demo:** [https://vinnojaya.web.app](https://vinnojaya.web.app)
+**Live Demo:** [https://vinnojaya.co.id](https://vinnojaya.co.id)
 
 ## � License
 
@@ -166,7 +166,7 @@ ISC License
 
 Untuk informasi lebih lanjut:
 
-- Website: [https://vinnojaya.web.app](https://vinnojaya.web.app)
+- Website: [https://vinnojaya.co.id](https://vinnojaya.co.id)
 - Email: your_email@gmail.com
 
 ---
@@ -586,8 +586,7 @@ This project is licensed under the ISC License.
 
 Untuk pertanyaan atau support, hubungi:
 
-- Email: your_email@gmail.com
-- Website: https://vinnojaya.web.app
+- Email: suryaaji016@gmail.com
 
 ## 🙏 Acknowledgments
 
