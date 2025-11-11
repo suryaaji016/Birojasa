@@ -147,7 +147,7 @@ export default function Layanan() {
     <>
       <Helmet>
         <title>
-          Layanan Kami - Jasa STNK, BPKB, SIM, BBN, Mutasi | Vinnojaya Bekasi
+          Layanan Kami - Jasa Konsultan Vinnojaya STNK & BPKB | Vinnojaya Bekasi
         </title>
         <meta
           name="description"
@@ -190,10 +190,10 @@ export default function Layanan() {
                 }}
               >
                 <tr>
-                  <th style={{ width: "30%", padding: "1rem" }}>Kategori</th>
-                  <th style={{ padding: "1rem" }}>Layanan</th>
+                  <th style={{ width: "30%", padding: "1rem" }}>KATEGORI</th>
+                  <th style={{ padding: "1rem" }}>LAYANAN</th>
                   <th style={{ width: "160px", padding: "1rem" }}>
-                    Persyaratan
+                    PERSYARATAN
                   </th>
                 </tr>
               </thead>

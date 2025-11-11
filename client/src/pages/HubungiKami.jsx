@@ -41,9 +41,7 @@ export default function HubungiKami() {
   return (
     <>
       <Helmet>
-        <title>
-          Hubungi Kami - Vinnojaya Pekayon & Galaxy Bekasi | Telepon & WhatsApp
-        </title>
+        <title>Hubungi Kami - Jasa Konsultan Vinnojaya STNK & BPKB</title>
         <meta
           name="description"
           content="Hubungi Vinnojaya Pekayon (0811-1044-949) dan Galaxy (0811-1772-949) untuk konsultasi dan layanan pengurusan STNK, BPKB, SIM. Lokasi di Bekasi Selatan, melayani dengan cepat dan ramah."
@@ -67,27 +65,6 @@ export default function HubungiKami() {
 
       <BannerHubungiKami />
       <section className="container my-3 my-md-5 px-3 px-md-4">
-        <div className="text-center mb-4 mb-md-5">
-          <h2
-            className="mb-2 fw-bold"
-            style={{
-              color: "#BE9539",
-              fontSize: "2.5rem",
-            }}
-          >
-            Hubungi Kami
-          </h2>
-          <div
-            style={{
-              width: "80px",
-              height: "4px",
-              background: "#BE9539",
-              margin: "0 auto",
-              borderRadius: "2px",
-            }}
-          />
-        </div>
-
         {/* Connect with us - Full Width */}
         <div className="mb-4">
           <div

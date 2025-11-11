@@ -30,7 +30,7 @@ export default function Banner() {
           {banners.length === 0 ? (
             <div className="carousel-item active hero">
               <div className="container text-center">
-                <h1>Hubungi Kami</h1>
+                <h1>HUBUNGI KAMI</h1>
               </div>
             </div>
           ) : (
@@ -52,7 +52,7 @@ export default function Banner() {
                   className="container text-center d-flex flex-column justify-content-center align-items-center"
                   style={{ minHeight: "420px" }}
                 >
-                  <h1>Hubungi Kami</h1>
+                  <h1>HUBUNGI KAMI</h1>
                 </div>
               </div>
             ))

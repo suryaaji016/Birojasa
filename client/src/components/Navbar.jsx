@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import { getAuthToken, removeAuthToken } from "../utils/cookies";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
   const token = getAuthToken();
   const navigate = useNavigate();
 
@@ -49,41 +51,43 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Burger Button for Mobile */}
+        {/* Burger Button for Mobile - controlled by React state */}
         <button
-          className="navbar-toggler"
+          className={`navbar-toggler ${isOpen ? "open" : ""}`}
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={isOpen}
           aria-label="Toggle navigation"
-          style={{
-            borderColor: "#BE9539",
-          }}
+          onClick={() => setIsOpen((s) => !s)}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
                 className="nav-link"
                 to="/"
                 style={{
-                  color: "#10100eff",
+                  color: "#1a1918",
                   fontWeight: "600",
                   transition: "all 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = "#A67F2E";
+                  e.target.style.color = "#BE9539";
                   e.target.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = "#181716ff";
+                  e.target.style.color = "#1a1918";
                   e.target.style.transform = "translateY(0)";
                 }}
+                onClick={() => setIsOpen(false)}
               >
                 Home
               </Link>
@@ -93,18 +97,19 @@ export default function Navbar() {
                 className="nav-link"
                 to="/layanan"
                 style={{
-                  color: "#1d1d1bff",
+                  color: "#1a1918",
                   fontWeight: "600",
                   transition: "all 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = "#A67F2E";
+                  e.target.style.color = "#BE9539";
                   e.target.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = "#191817ff";
+                  e.target.style.color = "#1a1918";
                   e.target.style.transform = "translateY(0)";
                 }}
+                onClick={() => setIsOpen(false)}
               >
                 Layanan
               </Link>
@@ -114,18 +119,19 @@ export default function Navbar() {
                 className="nav-link"
                 to="/tentang-kami"
                 style={{
-                  color: "#21201fff",
+                  color: "#1a1918",
                   fontWeight: "600",
                   transition: "all 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = "#A67F2E";
+                  e.target.style.color = "#BE9539";
                   e.target.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = "#1e1d1dff";
+                  e.target.style.color = "#1a1918";
                   e.target.style.transform = "translateY(0)";
                 }}
+                onClick={() => setIsOpen(false)}
               >
                 Tentang Kami
               </Link>
@@ -135,18 +141,19 @@ export default function Navbar() {
                 className="nav-link"
                 to="/hubungi-kami"
                 style={{
-                  color: "#1a1918ff",
+                  color: "#1a1918",
                   fontWeight: "600",
                   transition: "all 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.color = "#A67F2E";
+                  e.target.style.color = "#BE9539";
                   e.target.style.transform = "translateY(-2px)";
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = "#1a1a18ff";
+                  e.target.style.color = "#1a1918";
                   e.target.style.transform = "translateY(0)";
                 }}
+                onClick={() => setIsOpen(false)}
               >
                 Hubungi Kami
               </Link>

@@ -86,7 +86,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Vinnojaya - Biro Jasa STNK, BPKB, SIM Terpercaya Bekasi</title>
+        <title>Vinnojaya - Jasa Konsultan Vinnojaya STNK & BPKB</title>
         <meta
           name="description"
           content="Vinnojaya adalah biro jasa terpercaya untuk pengurusan STNK, BPKB, BBN, SIM, dan mutasi kendaraan di Bekasi. Layanan cepat, aman, dan profesional sejak 2000. Hubungi 0811-1044-949."
@@ -100,7 +100,7 @@ export default function Home() {
         {/* Open Graph */}
         <meta
           property="og:title"
-          content="Vinnojaya - Biro Jasa STNK, BPKB, SIM Terpercaya Bekasi"
+          content="Vinnojaya - Jasa Konsultan Vinnojaya STNK & BPKB"
         />
         <meta
           property="og:description"
@@ -285,7 +285,7 @@ export default function Home() {
             </div>
             <div className="col-md-7">
               <h2 className="mb-2 fw-bold" style={{ color: "#131311ff" }}>
-                Sekilas Tentang Kami
+                SEKILAS TENTANG KAMI
               </h2>
 
               <p style={{ lineHeight: "1.8", color: "#555" }}>
@@ -302,7 +302,7 @@ export default function Home() {
 
               <div className="mt-4">
                 <a
-                  href="/layanan"
+                  href="/tentang-kami"
                   className="btn px-4"
                   style={{
                     borderRadius: "10px",
@@ -340,244 +340,269 @@ export default function Home() {
             color: "#2c3e50",
           }}
         >
-          <div className="mb-4">
-            <h2 className="mb-0 fw-bold">Layanan</h2>
+          <div className="text-center mb-4">
+            <h2 className="mb-2 fw-bold" style={{ color: "#1a1918" }}>
+              LAYANAN
+            </h2>
             <div
               style={{
                 width: "80px",
                 height: "4px",
-                marginTop: "10px",
+                background: "#BE9539",
+                margin: "0 auto",
                 borderRadius: "2px",
               }}
             />
           </div>
 
-          <div className="row g-3 g-md-4">
+          <div className="row g-4">
+            {/* STNK */}
             <div className="col-md-6">
-              {/* Left column: 2 service cards */}
               <div
-                className="d-flex align-items-start p-3 bg-white rounded mb-3"
+                className="p-4 bg-white rounded d-flex align-items-center"
                 style={{
-                  borderLeft: "4px solid #BE9539",
-                  boxShadow: "0 4px 8px rgba(190, 149, 57, 0.15)",
-                  borderRadius: "10px",
+                  borderLeft: "5px solid #BE9539",
+                  boxShadow: "0 4px 12px rgba(190, 149, 57, 0.15)",
+                  borderRadius: "12px",
                   transition: "all 0.3s ease",
+                  minHeight: "100px",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateX(10px)";
+                  e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
-                    "0 6px 12px rgba(190, 149, 57, 0.25)";
+                    "0 8px 20px rgba(190, 149, 57, 0.25)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateX(0)";
+                  e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow =
-                    "0 4px 8px rgba(190, 149, 57, 0.15)";
+                    "0 4px 12px rgba(190, 149, 57, 0.15)";
                 }}
               >
                 <div
-                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
+                  className="me-4 d-flex align-items-center justify-content-center"
                   style={{
-                    width: 50,
-                    height: 50,
-                    background: "#BE9539",
-                    borderRadius: "10px",
+                    width: 80,
+                    height: 80,
+                    background: "linear-gradient(135deg, #BE9539, #D4A853)",
+                    borderRadius: "15px",
                     flexShrink: 0,
-                    position: "relative",
+                    boxShadow: "0 4px 10px rgba(190, 149, 57, 0.3)",
                   }}
                 >
                   <img
                     src="/stnk.png"
-                    alt="STNK Service Icon"
+                    alt="STNK"
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      opacity: 0.9,
+                      width: "85%",
+                      height: "85%",
+                      objectFit: "contain",
                     }}
                   />
                 </div>
                 <div>
-                  <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
+                  <h4 className="mb-0 fw-bold" style={{ color: "#BE9539" }}>
                     STNK
-                  </h5>
-                </div>
-              </div>
-
-              <div
-                className="d-flex align-items-start p-3 bg-white rounded mt-3"
-                style={{
-                  borderLeft: "4px solid #BE9539",
-                  boxShadow: "0 4px 8px rgba(190, 149, 57, 0.15)",
-                  borderRadius: "10px",
-                  transition: "all 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateX(10px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 6px 12px rgba(190, 149, 57, 0.25)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateX(0)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 8px rgba(190, 149, 57, 0.15)";
-                }}
-              >
-                <div
-                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
-                  style={{
-                    width: 50,
-                    height: 50,
-                    background: "#BE9539",
-                    borderRadius: "10px",
-                    flexShrink: 0,
-                    position: "relative",
-                  }}
-                >
-                  <img
-                    src="/sim.png"
-                    alt="SIM Service Icon"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      opacity: 0.9,
-                    }}
-                  />
-                </div>
-                <div>
-                  <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
-                    SIM
-                  </h5>
+                  </h4>
                 </div>
               </div>
             </div>
 
+            {/* BPKB */}
             <div className="col-md-6">
               <div
-                className="d-flex align-items-start p-3 bg-white rounded mb-3"
+                className="p-4 bg-white rounded d-flex align-items-center"
                 style={{
-                  borderLeft: "4px solid #BE9539",
-                  boxShadow: "0 4px 8px rgba(190, 149, 57, 0.15)",
-                  borderRadius: "10px",
+                  borderLeft: "5px solid #BE9539",
+                  boxShadow: "0 4px 12px rgba(190, 149, 57, 0.15)",
+                  borderRadius: "12px",
                   transition: "all 0.3s ease",
+                  minHeight: "100px",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateX(10px)";
+                  e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
-                    "0 6px 12px rgba(190, 149, 57, 0.25)";
+                    "0 8px 20px rgba(190, 149, 57, 0.25)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateX(0)";
+                  e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow =
-                    "0 4px 8px rgba(190, 149, 57, 0.15)";
+                    "0 4px 12px rgba(190, 149, 57, 0.15)";
                 }}
               >
                 <div
-                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
+                  className="me-4 d-flex align-items-center justify-content-center"
                   style={{
-                    width: 50,
-                    height: 50,
-                    background: "#BE9539",
-                    borderRadius: "10px",
+                    width: 80,
+                    height: 80,
+                    background: "linear-gradient(135deg, #BE9539, #D4A853)",
+                    borderRadius: "15px",
                     flexShrink: 0,
-                    position: "relative",
+                    boxShadow: "0 4px 10px rgba(190, 149, 57, 0.3)",
                   }}
                 >
                   <img
                     src="/bpkb.png"
-                    alt="BPKB Service Icon"
+                    alt="BPKB"
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      opacity: 0.9,
+                      width: "85%",
+                      height: "85%",
+                      objectFit: "contain",
                     }}
                   />
                 </div>
                 <div>
-                  <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
+                  <h4 className="mb-0 fw-bold" style={{ color: "#BE9539" }}>
                     BPKB
-                  </h5>
+                  </h4>
                 </div>
               </div>
+            </div>
 
+            {/* SIM */}
+            <div className="col-md-6">
               <div
-                className="d-flex align-items-start p-3 bg-white rounded"
+                className="p-4 bg-white rounded d-flex align-items-center"
                 style={{
-                  borderLeft: "4px solid #BE9539",
-                  boxShadow: "0 4px 8px rgba(190, 149, 57, 0.15)",
-                  borderRadius: "10px",
+                  borderLeft: "5px solid #BE9539",
+                  boxShadow: "0 4px 12px rgba(190, 149, 57, 0.15)",
+                  borderRadius: "12px",
                   transition: "all 0.3s ease",
+                  minHeight: "100px",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateX(10px)";
+                  e.currentTarget.style.transform = "translateY(-5px)";
                   e.currentTarget.style.boxShadow =
-                    "0 6px 12px rgba(190, 149, 57, 0.25)";
+                    "0 8px 20px rgba(190, 149, 57, 0.25)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateX(0)";
+                  e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow =
-                    "0 4px 8px rgba(190, 149, 57, 0.15)";
+                    "0 4px 12px rgba(190, 149, 57, 0.15)";
                 }}
               >
                 <div
-                  className="me-3 d-flex align-items-center justify-content-center overflow-hidden"
+                  className="me-4 d-flex align-items-center justify-content-center"
                   style={{
-                    width: 50,
-                    height: 50,
-                    background: "#BE9539",
-                    borderRadius: "10px",
+                    width: 80,
+                    height: 80,
+                    background: "linear-gradient(135deg, #BE9539, #D4A853)",
+                    borderRadius: "15px",
                     flexShrink: 0,
-                    position: "relative",
+                    boxShadow: "0 4px 10px rgba(190, 149, 57, 0.3)",
+                  }}
+                >
+                  <img
+                    src="/sim.png"
+                    alt="SIM"
+                    style={{
+                      width: "85%",
+                      height: "85%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <div>
+                  <h4 className="mb-0 fw-bold" style={{ color: "#BE9539" }}>
+                    SIM
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            {/* PASPOR */}
+            <div className="col-md-6">
+              <div
+                className="p-4 bg-white rounded d-flex align-items-center"
+                style={{
+                  borderLeft: "5px solid #BE9539",
+                  boxShadow: "0 4px 12px rgba(190, 149, 57, 0.15)",
+                  borderRadius: "12px",
+                  transition: "all 0.3s ease",
+                  minHeight: "100px",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-5px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 20px rgba(190, 149, 57, 0.25)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 12px rgba(190, 149, 57, 0.15)";
+                }}
+              >
+                <div
+                  className="me-4 d-flex align-items-center justify-content-center"
+                  style={{
+                    width: 80,
+                    height: 80,
+                    background: "linear-gradient(135deg, #BE9539, #D4A853)",
+                    borderRadius: "15px",
+                    flexShrink: 0,
+                    boxShadow: "0 4px 10px rgba(190, 149, 57, 0.3)",
                   }}
                 >
                   <img
                     src="/paspor.png"
-                    alt="PASPOR Service Icon"
+                    alt="PASPOR"
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      opacity: 0.9,
+                      width: "85%",
+                      height: "85%",
+                      objectFit: "contain",
                     }}
                   />
                 </div>
                 <div>
-                  <h5 className="mb-1 fw-bold" style={{ color: "#BE9539" }}>
+                  <h4 className="mb-0 fw-bold" style={{ color: "#BE9539" }}>
                     PASPOR
-                  </h5>
+                  </h4>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="text-center mt-5">
+          {/* Button Lihat Semua Layanan */}
+          <div className="text-center mt-4">
             <a
               href="/layanan"
-              className="btn px-5"
+              className="btn btn-lg px-5"
               style={{
-                borderRadius: "10px",
-                fontWeight: "600",
                 background: "#BE9539",
                 borderColor: "#BE9539",
                 color: "#fff",
-                padding: "12px 30px",
+                fontWeight: "bold",
+                borderRadius: "12px",
+                padding: "12px 40px",
                 transition: "all 0.3s ease",
+                boxShadow: "0 4px 10px rgba(190, 149, 57, 0.2)",
               }}
               onMouseEnter={(e) => {
                 e.target.style.backgroundColor = "#A67F2E";
-                e.target.style.transform = "translateY(-2px)";
-                e.target.style.boxShadow = "0 4px 8px rgba(190, 149, 57, 0.3)";
+                e.target.style.transform = "translateY(-3px)";
+                e.target.style.boxShadow =
+                  "0 8px 16px rgba(190, 149, 57, 0.35)";
               }}
               onMouseLeave={(e) => {
                 e.target.style.backgroundColor = "#BE9539";
                 e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = "none";
+                e.target.style.boxShadow = "0 4px 10px rgba(190, 149, 57, 0.2)";
               }}
             >
               Lihat Semua Layanan →
             </a>
           </div>
+        </div>
+
+        {/* Form Pengajuan Layanan */}
+        <div
+          className="p-3 p-md-4"
+          style={{
+            background: "linear-gradient(to bottom, #fffbf5, #ffffff)",
+            borderRadius: "12px",
+            boxShadow: "0 4px 8px rgba(190, 149, 57, 0.15)",
+          }}
+        >
+          <ServiceForm />
         </div>
       </section>
 

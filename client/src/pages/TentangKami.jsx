@@ -1,6 +1,7 @@
 import React from "react";
 import BannerTentangKami from "../components/BannerTentangKami";
 import { Helmet } from "react-helmet-async";
+import { FaCheck } from "react-icons/fa";
 
 export default function TentangKami() {
   return (
@@ -38,27 +39,6 @@ export default function TentangKami() {
           boxShadow: "0 4px 8px rgba(190, 149, 57, 0.15)",
         }}
       >
-        <div className="text-center mb-4 mb-md-5">
-          <h2
-            className="mb-2 fw-bold"
-            style={{
-              color: "#BE9539",
-              fontSize: "2.5rem",
-            }}
-          >
-            Tentang Kami
-          </h2>
-          <div
-            style={{
-              width: "80px",
-              height: "4px",
-              background: "#BE9539",
-              margin: "0 auto",
-              borderRadius: "2px",
-            }}
-          />
-        </div>
-
         <div className="row mb-4 mb-md-5">
           <div className="col-md-3 mb-3 mb-md-0">
             <div
@@ -112,16 +92,95 @@ export default function TentangKami() {
                   color: "#BE9539",
                 }}
               >
-                Keunggulan Vinnojaya
+                KEUNGGULAN VINNOJAYA
               </h5>
-              <ol style={{ lineHeight: "2", color: "#555" }}>
-                <li>
-                  Berbasis sistem komputerisasi untuk efisiensi dan keamanan.
+              <ul
+                style={{
+                  listStyle: "none",
+                  paddingLeft: 0,
+                  lineHeight: "2",
+                  color: "#555",
+                }}
+              >
+                <li
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  <FaCheck
+                    style={{
+                      color: "#BE9539",
+                      fontSize: "1.5rem",
+                      marginRight: "1rem",
+                      flexShrink: 0,
+                      marginTop: "0.1rem",
+                    }}
+                  />
+                  <span>
+                    Berbasis sistem komputerisasi untuk efisiensi dan keamanan.
+                  </span>
                 </li>
-                <li>Memiliki legalitas resmi yang terdaftar dan terpercaya.</li>
-                <li>Kualitas &amp; keamanan dalam setiap proses layanan.</li>
-                <li>Harga terjangkau dengan transparansi biaya.</li>
-              </ol>
+                <li
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  <FaCheck
+                    style={{
+                      color: "#BE9539",
+                      fontSize: "1.5rem",
+                      marginRight: "1rem",
+                      flexShrink: 0,
+                      marginTop: "0.1rem",
+                    }}
+                  />
+                  <span>
+                    Memiliki legalitas resmi yang terdaftar dan terpercaya.
+                  </span>
+                </li>
+                <li
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  <FaCheck
+                    style={{
+                      color: "#BE9539",
+                      fontSize: "1.5rem",
+                      marginRight: "1rem",
+                      flexShrink: 0,
+                      marginTop: "0.1rem",
+                    }}
+                  />
+                  <span>
+                    Kualitas &amp; keamanan dalam setiap proses layanan.
+                  </span>
+                </li>
+                <li
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  <FaCheck
+                    style={{
+                      color: "#BE9539",
+                      fontSize: "1.5rem",
+                      marginRight: "1rem",
+                      flexShrink: 0,
+                      marginTop: "0.1rem",
+                    }}
+                  />
+                  <span>Harga terjangkau dengan transparansi biaya.</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
