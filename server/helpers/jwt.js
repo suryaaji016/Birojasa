@@ -1,8 +1,13 @@
 const jwt = require("jsonwebtoken");
-const SECRET = process.env.JWT_SECRET || "birojasa_secret";
+const SECRET = process.env.JWT_SECRET;
+
+if (!SECRET) {
+  console.error("❌ JWT_SECRET tidak ditemukan di environment variables!");
+  process.exit(1);
+}
 
 function signToken(payload) {
-  return jwt.sign(payload, SECRET);
+  return jwt.sign(payload, SECRET, { expiresIn: "24h" }); // Token expire dalam 24 jam
 }
 
 function verifyToken(token) {

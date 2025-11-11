@@ -4,14 +4,25 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 export default function Register() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "", kodeUnik: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validasi kode unik
+    if (form.kodeUnik !== "@Vinno1Jaya2") {
+      Swal.fire("Gagal", "Kode unik tidak valid!", "error");
+      return;
+    }
+
     try {
-      await axios.post("/users/register", form);
+      await axios.post("/users/register", {
+        email: form.email,
+        password: form.password,
+        kodeUnik: form.kodeUnik, // Kirim ke backend untuk validasi
+      });
       Swal.fire("Berhasil", "Akun berhasil dibuat!", "success");
-      setForm({ email: "", password: "" });
+      setForm({ email: "", password: "", kodeUnik: "" });
     } catch (err) {
       Swal.fire("Gagal", err.response?.data?.message || "Error", "error");
     }
@@ -35,6 +46,14 @@ export default function Register() {
           className="form-control mb-3"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Kode Unik"
+          className="form-control mb-3"
+          value={form.kodeUnik}
+          onChange={(e) => setForm({ ...form, kodeUnik: e.target.value })}
           required
         />
         <button className="btn btn-primary w-100">Register</button>
