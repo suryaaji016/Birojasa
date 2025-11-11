@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
-const mongoSanitize = require("express-mongo-sanitize");
+// const mongoSanitize = require("express-mongo-sanitize"); // DISABLED - Not compatible with Express 5
 const app = express();
 const reviewRoutes = require("./routes/review");
 const serviceRoutes = require("./routes/serviceForm");
@@ -14,7 +14,7 @@ const configServices = require("./routes/configServices");
 
 // Security middleware
 app.use(helmet()); // Menambahkan security headers
-app.use(mongoSanitize()); // Mencegah NoSQL injection
+// app.use(mongoSanitize()); // DISABLED - Not compatible with Express 5 (causes "Cannot set property query" error)
 
 // CORS configuration - hanya izinkan dari domain tertentu
 const allowedOrigins = [
@@ -47,7 +47,17 @@ app.use(express.json({ limit: "10mb" })); // Batasi ukuran payload
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 app.get("/", (req, res) => res.send("🚗 Biro Jasa API Ready!"));
-app.use("/uploads", express.static("uploads"));
+
+// Serve static files with CORS headers
+app.use(
+  "/uploads",
+  (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Cross-Origin-Resource-Policy", "cross-origin");
+    next();
+  },
+  express.static("uploads")
+);
 
 app.use("/users", userRoutes); // ✅ register & login admin
 app.use("/reviews", reviewRoutes);
