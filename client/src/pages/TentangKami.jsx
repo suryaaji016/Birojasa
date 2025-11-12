@@ -230,17 +230,25 @@ export default function TentangKami() {
                   "0 6px 12px rgba(190, 149, 57, 0.2)";
               }}
             >
-              <div className="row align-items-center">
-                <div className="col-md-4 mb-3 mb-md-0">
+              <div
+                className="row align-items-center"
+                style={{ alignItems: "stretch" }}
+              >
+                <div
+                  className="col-md-4 mb-3 mb-md-0"
+                  style={{ display: "flex" }}
+                >
                   <img
-                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop"
+                    src="/HO_VINNOJAYA.JPG"
                     alt="VINNOJAYA PEKAYON Office"
                     style={{
                       width: "100%",
-                      height: "250px",
+                      height: "100%",
                       objectFit: "cover",
+                      objectPosition: "center",
                       borderRadius: "10px",
                       border: "3px solid #BE9539",
+                      display: "block",
                     }}
                   />
                 </div>
@@ -322,17 +330,25 @@ export default function TentangKami() {
                   "0 6px 12px rgba(190, 149, 57, 0.2)";
               }}
             >
-              <div className="row align-items-center">
-                <div className="col-md-4 mb-3 mb-md-0">
+              <div
+                className="row align-items-center"
+                style={{ alignItems: "stretch" }}
+              >
+                <div
+                  className="col-md-4 mb-3 mb-md-0"
+                  style={{ display: "flex" }}
+                >
                   <img
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
                     alt="VINNOJAYA KCP TAMAN GALAXY Office"
                     style={{
                       width: "100%",
-                      height: "250px",
+                      height: "100%",
                       objectFit: "cover",
+                      objectPosition: "center",
                       borderRadius: "10px",
                       border: "3px solid #BE9539",
+                      display: "block",
                     }}
                   />
                 </div>
