@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BannerTentangKami from "../components/BannerTentangKami";
 import { Helmet } from "react-helmet-async";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function TentangKami() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    "/slide/1.JPG",
+    "/slide/2.JPG",
+    "/slide/3.JPG",
+    "/slide/4.JPG",
+    "/slide/5.JPG",
+    "/slide/6.jpg",
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  // Auto-slide every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   return (
     <>
       <Helmet>
@@ -41,20 +68,123 @@ export default function TentangKami() {
       >
         <div className="row mb-4 mb-md-5">
           <div className="col-md-3 mb-3 mb-md-0">
+            {/* Image Carousel */}
             <div
-              className="p-3 h-100 d-flex align-items-center justify-content-center"
               style={{
-                background: "#BE9539",
+                position: "relative",
                 borderRadius: "10px",
-                color: "white",
-                fontWeight: "700",
-                fontSize: "1.2rem",
-                textAlign: "center",
-                minHeight: "60px",
+                overflow: "hidden",
                 boxShadow: "0 4px 8px rgba(190, 149, 57, 0.3)",
+                height: "100%",
+                minHeight: "300px",
               }}
             >
-              TENTANG KAMI
+              <img
+                src={slides[currentSlide]}
+                alt={`Slide ${currentSlide + 1}`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevSlide}
+                style={{
+                  position: "absolute",
+                  left: "10px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "rgba(190, 149, 57, 0.8)",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: "40px",
+                  height: "40px",
+                  color: "white",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.3s ease",
+                  zIndex: 10,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(190, 149, 57, 1)";
+                  e.currentTarget.style.transform =
+                    "translateY(-50%) scale(1.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(190, 149, 57, 0.8)";
+                  e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+                }}
+              >
+                <FaChevronLeft size={20} />
+              </button>
+              <button
+                onClick={nextSlide}
+                style={{
+                  position: "absolute",
+                  right: "10px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "rgba(190, 149, 57, 0.8)",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: "40px",
+                  height: "40px",
+                  color: "white",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.3s ease",
+                  zIndex: 10,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(190, 149, 57, 1)";
+                  e.currentTarget.style.transform =
+                    "translateY(-50%) scale(1.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(190, 149, 57, 0.8)";
+                  e.currentTarget.style.transform = "translateY(-50%) scale(1)";
+                }}
+              >
+                <FaChevronRight size={20} />
+              </button>
+              {/* Indicators */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "15px",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  display: "flex",
+                  gap: "8px",
+                  zIndex: 10,
+                }}
+              >
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    style={{
+                      width: currentSlide === index ? "30px" : "10px",
+                      height: "10px",
+                      borderRadius: "5px",
+                      border: "none",
+                      background:
+                        currentSlide === index
+                          ? "#BE9539"
+                          : "rgba(255, 255, 255, 0.5)",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <div className="col-md-9">
@@ -239,7 +369,7 @@ export default function TentangKami() {
                   style={{ display: "flex" }}
                 >
                   <img
-                    src="/HO_VINNOJAYA.JPG"
+                    src="/PEKAYON.jpg"
                     alt="VINNOJAYA PEKAYON Office"
                     style={{
                       width: "100%",
@@ -339,7 +469,7 @@ export default function TentangKami() {
                   style={{ display: "flex" }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop"
+                    src="/GALAXY.jpg"
                     alt="VINNOJAYA KCP TAMAN GALAXY Office"
                     style={{
                       width: "100%",
