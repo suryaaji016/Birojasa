@@ -12,7 +12,7 @@ export default function HubungiKami() {
         "Jl. Palem Raya cc 35 no.4 RT. 005 RW. 017. Pondok Pekayon Indah Pekayon Jaya, Bekasi Selatan",
       phone: "021-824 15 999",
       whatsapp: "628111044949",
-      email: "vinnojaya.pekayon@gmail.com",
+      email: "vinnojaya.business@gmail.com",
     },
     {
       name: "VINNOJAYA KCP TAMAN GALAXY",
@@ -76,14 +76,26 @@ export default function HubungiKami() {
               boxShadow: "0 6px 12px rgba(190, 149, 57, 0.2)",
             }}
           >
-            <h5
-              className="fw-bold mb-4"
-              style={{ fontSize: "1.4rem", color: "#BE9539" }}
-            >
-              Connect with us
-            </h5>
+            <div className="row mb-4">
+              <div className="col-md-8">
+                <h5
+                  className="fw-bold"
+                  style={{ fontSize: "1.4rem", color: "#BE9539" }}
+                >
+                  CONNECT WITH US
+                </h5>
+              </div>
+              <div className="col-md-4">
+                <h5
+                  className="fw-bold"
+                  style={{ fontSize: "1.4rem", color: "#BE9539" }}
+                >
+                  JAM OPERASIONAL
+                </h5>
+              </div>
+            </div>
             <div className="row">
-              <div className="col-md-6 mb-3 mb-md-0">
+              <div className="col-md-4 mb-3 mb-md-0">
                 <p className="mb-3" style={{ color: "#555" }}>
                   <strong style={{ color: "#BE9539" }}>
                     📞 Telpon / Hotline:
@@ -143,7 +155,7 @@ export default function HubungiKami() {
                 </p>
               </div>
 
-              <div className="col-md-6">
+              <div className="col-md-4 mb-3 mb-md-0">
                 <p className="mb-3" style={{ color: "#555" }}>
                   <strong style={{ color: "#BE9539" }}>Instagram:</strong>
                   <br />
@@ -247,6 +259,40 @@ export default function HubungiKami() {
                     <FaTiktok size={24} />
                   </a>
                 </div>
+              </div>
+
+              {/* Jam Operasional - Right Column */}
+              <div className="col-md-4">
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  <li className="mb-2" style={{ color: "#555" }}>
+                    <strong>Senin</strong>
+                    <span className="float-end">09:00 - 19:00</span>
+                  </li>
+                  <li className="mb-2" style={{ color: "#555" }}>
+                    <strong>Selasa</strong>
+                    <span className="float-end">09:00 - 19:00</span>
+                  </li>
+                  <li className="mb-2" style={{ color: "#555" }}>
+                    <strong>Rabu</strong>
+                    <span className="float-end">09:00 - 19:00</span>
+                  </li>
+                  <li className="mb-2" style={{ color: "#555" }}>
+                    <strong>Kamis</strong>
+                    <span className="float-end">09:00 - 19:00</span>
+                  </li>
+                  <li className="mb-2" style={{ color: "#555" }}>
+                    <strong>Jumat</strong>
+                    <span className="float-end">09:00 - 19:00</span>
+                  </li>
+                  <li className="mb-2" style={{ color: "#555" }}>
+                    <strong>Sabtu</strong>
+                    <span className="float-end">09:00 - 14:00</span>
+                  </li>
+                  <li style={{ color: "#BE9539", fontWeight: "bold" }}>
+                    <strong>Minggu / Libur Nasional</strong>
+                    <span className="float-end">Tutup</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
