@@ -1,20 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const helmet = require("helmet");
-// const mongoSanitize = require("express-mongo-sanitize"); // DISABLED - Not compatible with Express 5
 const app = express();
 const reviewRoutes = require("./routes/review");
 const serviceRoutes = require("./routes/serviceForm");
 const bannerRoutes = require("./routes/banner");
 const userRoutes = require("./routes/user");
-const queueRoutes = require("./routes/queue");
-const failedRoutes = require("./routes/failed");
 const partnerRoutes = require("./routes/partner");
 const configServices = require("./routes/configServices");
-
-// Security middleware
-app.use(helmet()); // Menambahkan security headers
-// app.use(mongoSanitize()); // DISABLED - Not compatible with Express 5 (causes "Cannot set property query" error)
 
 // CORS configuration - hanya izinkan dari domain tertentu
 const allowedOrigins = [
@@ -63,8 +55,6 @@ app.use("/users", userRoutes); // ✅ register & login admin
 app.use("/reviews", reviewRoutes);
 app.use("/service", serviceRoutes);
 app.use("/banners", bannerRoutes);
-app.use("/admin/queue", queueRoutes);
-app.use("/admin/failed", failedRoutes);
 app.use("/partners", partnerRoutes);
 app.use("/config", configServices);
 

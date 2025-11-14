@@ -1,5 +1,3 @@
-const { appendForm } = require("../helpers/formQueue");
-
 class ServiceFormController {
   static async send(req, res) {
     try {
@@ -130,40 +128,16 @@ class ServiceFormController {
         );
       }
 
-      // Only add to queue if immediate send failed
+      // Return result to user
       if (!emailSent) {
-        try {
-          console.log("[ServiceForm] Adding to queue for retry...");
-          await appendForm({
-            nama,
-            noTelp,
-            layanan,
-            category,
-            daerah,
-            asal,
-            tujuan,
-            noPolisi,
-            cabang,
-            createdAt: new Date().toISOString(),
-            _attempts: 0,
-          });
-          console.log(
-            "[ServiceForm] ✅ Added to queue for background processing"
-          );
-        } catch (queueErr) {
-          console.error("[ServiceForm] ❌ Failed to add to queue:", queueErr);
-          return res.status(500).json({
-            message: "Gagal mengirim email dan menyimpan ke antrean",
-            error: String(queueErr),
-          });
-        }
+        console.error("[ServiceForm] ❌ Email send failed - no retry queue");
+        return res.status(500).json({
+          message: "Gagal mengirim email. Silakan hubungi admin via WhatsApp.",
+        });
       }
 
-      // Return success to user
       return res.status(200).json({
-        message: emailSent
-          ? "Email berhasil dikirim ke admin."
-          : "Email disimpan dalam antrean. Admin akan diberitahu segera.",
+        message: "Email berhasil dikirim ke admin.",
       });
     } catch (err) {
       return res
