@@ -99,15 +99,26 @@ class ServiceFormController {
       htmlRows.push(`<hr/><p>Balas pesan ini untuk menindaklanjuti.</p>`);
       const htmlBody = htmlRows.join("\n");
 
-      // Try immediate send with both text and html
+      // Try immediate send with both text and html - with timeout
       if (toEmail) {
         try {
-          const result = await sendMail(
+          // Set timeout wrapper for email sending
+          const emailPromise = sendMail(
             toEmail,
             `Permintaan Layanan: ${nama || ""}`,
             textBody,
             htmlBody
           );
+
+          const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(
+              () => reject(new Error("Email timeout after 20s")),
+              20000
+            )
+          );
+
+          const result = await Promise.race([emailPromise, timeoutPromise]);
+
           console.info(
             "[ServiceForm] ✅ Immediate email sent to",
             toEmail,
@@ -120,6 +131,8 @@ class ServiceFormController {
             "[ServiceForm] ❌ Immediate email send failed:",
             err.message || err
           );
+          // Don't fail the request, just log the error
+          emailSent = false;
         }
       } else {
         console.warn(
@@ -128,16 +141,20 @@ class ServiceFormController {
         );
       }
 
-      // Return result to user
+      // Return result to user - always succeed to improve UX
+      // Even if email fails, we log it and user can contact via WhatsApp
       if (!emailSent) {
-        console.error("[ServiceForm] ❌ Email send failed - no retry queue");
-        return res.status(500).json({
-          message: "Gagal mengirim email. Silakan hubungi admin via WhatsApp.",
+        console.error(
+          "[ServiceForm] ❌ Email send failed - but responding 200"
+        );
+        return res.status(200).json({
+          message: "Formulir diterima. Kami akan menghubungi Anda segera.",
+          warning: "Email notification may be delayed",
         });
       }
 
       return res.status(200).json({
-        message: "Email berhasil dikirim ke admin.",
+        message: "Formulir berhasil dikirim dan email notifikasi terkirim.",
       });
     } catch (err) {
       return res

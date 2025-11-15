@@ -19,6 +19,7 @@ const allowedOrigins = [
   "https://birojasa-eosin.vercel.app",
 ];
 
+// Enable CORS for all routes with proper headers
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -33,8 +34,10 @@ app.use(
       return callback(null, true);
     },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["Content-Range", "X-Content-Range"],
+    maxAge: 600, // Cache preflight for 10 minutes
   })
 );
 

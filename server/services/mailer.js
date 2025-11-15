@@ -22,6 +22,9 @@ function getTransporter() {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 15000, // 15 seconds for socket
   });
   return transporter;
 }

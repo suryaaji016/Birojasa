@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosInstance from "../api/axios";
 import Swal from "sweetalert2";
 
 export default function ServiceForm() {
@@ -62,7 +62,9 @@ export default function ServiceForm() {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("http://localhost:3000/config/services");
+        const res = await fetch(
+          "https://server.vinnojaya.co.id/config/services"
+        );
         const data = await res.json();
         if (Array.isArray(data) && data.length) {
           // transform to maps
@@ -223,12 +225,42 @@ export default function ServiceForm() {
     // requirements checklist removed from form - nothing to include
 
     try {
-      await axios.post("http://localhost:3000/service", payload);
-      Swal.fire("Terkirim ✅", "Form berhasil dikirim ke admin.", "success");
+      const response = await axiosInstance.post("/service", payload, {
+        timeout: 25000, // 25 second timeout
+      });
+
+      // Check if there's a warning (email delayed)
+      if (response.data.warning) {
+        Swal.fire(
+          "Terkirim ✅",
+          "Form berhasil diterima. Kami akan menghubungi Anda segera.",
+          "success"
+        );
+      } else {
+        Swal.fire(
+          "Terkirim ✅",
+          response.data.message || "Form berhasil dikirim ke admin.",
+          "success"
+        );
+      }
       setForm(defaultForm);
     } catch (err) {
       console.log("🚀 ~ handleSubmit ~ err:", err);
-      Swal.fire("Gagal ❌", "Tidak dapat mengirim formulir.", "error");
+
+      let errorMsg = "Tidak dapat mengirim formulir. ";
+      if (err.code === "ECONNABORTED" || err.message.includes("timeout")) {
+        errorMsg +=
+          "Koneksi timeout. Silakan coba lagi atau hubungi via WhatsApp.";
+      } else if (err.response) {
+        errorMsg += err.response.data?.message || "Server error.";
+      } else if (err.request) {
+        errorMsg +=
+          "Tidak dapat terhubung ke server. Periksa koneksi internet Anda.";
+      } else {
+        errorMsg += err.message;
+      }
+
+      Swal.fire("Gagal ❌", errorMsg, "error");
     }
   };
 
