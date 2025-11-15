@@ -14,6 +14,8 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://vinnojaya.web.app",
   "https://vinnojaya.firebaseapp.com",
+  "https://vinnojaya.co.id",
+  "https://www.vinnojaya.co.id",
   "https://birojasa-eosin.vercel.app",
 ];
 
