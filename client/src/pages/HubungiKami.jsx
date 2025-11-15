@@ -77,7 +77,7 @@ export default function HubungiKami() {
             }}
           >
             <div className="row mb-4">
-              <div className="col-md-8">
+              <div className="col-md-8 order-2 order-md-1">
                 <h5
                   className="fw-bold"
                   style={{ fontSize: "1.4rem", color: "#BE9539" }}
@@ -85,7 +85,7 @@ export default function HubungiKami() {
                   CONNECT WITH US
                 </h5>
               </div>
-              <div className="col-md-4">
+              <div className="col-md-4 order-1 order-md-2">
                 <h5
                   className="fw-bold"
                   style={{ fontSize: "1.4rem", color: "#BE9539" }}
@@ -95,7 +95,7 @@ export default function HubungiKami() {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-4 mb-3 mb-md-0">
+              <div className="col-md-4 mb-3 mb-md-0 order-2 order-md-1">
                 <p className="mb-3" style={{ color: "#555" }}>
                   <strong style={{ color: "#BE9539" }}>
                     📞 Telpon / Hotline:
@@ -155,7 +155,7 @@ export default function HubungiKami() {
                 </p>
               </div>
 
-              <div className="col-md-4 mb-3 mb-md-0">
+              <div className="col-md-4 mb-3 mb-md-0 order-3 order-md-2">
                 <p className="mb-3" style={{ color: "#555" }}>
                   <strong style={{ color: "#BE9539" }}>Instagram:</strong>
                   <br />
@@ -262,7 +262,7 @@ export default function HubungiKami() {
               </div>
 
               {/* Jam Operasional - Right Column */}
-              <div className="col-md-4">
+              <div className="col-md-4 order-1 order-md-3">
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   <li className="mb-2" style={{ color: "#555" }}>
                     <strong>Senin</strong>
