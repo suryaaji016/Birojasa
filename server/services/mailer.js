@@ -1,13 +1,23 @@
 const nodemailer = require("nodemailer");
 
 // Configure via env vars
+const USE_RESEND = process.env.USE_RESEND === "true";
 const SMTP_HOST = process.env.SMTP_HOST;
 const SMTP_PORT = Number(process.env.SMTP_PORT || "587");
+const SMTP_SECURE = process.env.SMTP_SECURE === "true" || SMTP_PORT === 465;
 const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
 const FROM_EMAIL = process.env.FROM_EMAIL || SMTP_USER;
 
 let transporter = null;
+
+// If using Resend, delegate to resend mailer
+if (USE_RESEND) {
+  console.log("[Mailer] Using Resend API instead of SMTP");
+  const resendMailer = require("./mailer-resend");
+  module.exports = resendMailer;
+} else {
+  // Use SMTP with nodemailer
 
 function getTransporter() {
   if (transporter) return transporter;
@@ -15,6 +25,7 @@ function getTransporter() {
   console.log("[Mailer] Checking SMTP configuration...");
   console.log("[Mailer] SMTP_HOST:", SMTP_HOST);
   console.log("[Mailer] SMTP_PORT:", SMTP_PORT);
+  console.log("[Mailer] SMTP_SECURE:", SMTP_SECURE);
   console.log("[Mailer] SMTP_USER:", SMTP_USER);
   console.log("[Mailer] SMTP_PASS:", SMTP_PASS ? "***configured***" : "MISSING");
   console.log("[Mailer] FROM_EMAIL:", FROM_EMAIL);
@@ -29,7 +40,7 @@ function getTransporter() {
   transporter = nodemailer.createTransport({
     host: SMTP_HOST,
     port: SMTP_PORT,
-    secure: SMTP_PORT === 465, // true for 465, false for other ports
+    secure: SMTP_SECURE, // true for 465, false for 587/other ports
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS,
@@ -37,6 +48,12 @@ function getTransporter() {
     connectionTimeout: 10000, // 10 seconds
     greetingTimeout: 10000,
     socketTimeout: 15000, // 15 seconds for socket
+    // For port 587, enable STARTTLS
+    requireTLS: !SMTP_SECURE,
+    tls: {
+      ciphers: 'SSLv3',
+      rejectUnauthorized: false
+    },
     debug: true, // Enable debug output
     logger: true // Enable logger
   });
@@ -80,4 +97,5 @@ async function sendMail(to, subject, text, html) {
   }
 }
 
-module.exports = { sendMail };
+  module.exports = { sendMail };
+}
