@@ -1,77 +1,58 @@
 const nodemailer = require("nodemailer");
 
 // Configure via env vars
-const USE_RESEND = process.env.USE_RESEND === "true";
-const SMTP_HOST = process.env.SMTP_HOST;
+const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
 const SMTP_PORT = Number(process.env.SMTP_PORT || "587");
-const SMTP_SECURE = process.env.SMTP_SECURE === "true" || SMTP_PORT === 465;
 const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
 const FROM_EMAIL = process.env.FROM_EMAIL || SMTP_USER;
 
 let transporter = null;
 
-// If using Resend, delegate to resend mailer
-if (USE_RESEND) {
-  console.log("[Mailer] Using Resend API instead of SMTP");
-  const resendMailer = require("./mailer-resend");
-  module.exports = resendMailer;
-} else {
-  // Use SMTP with nodemailer
-
 function getTransporter() {
   if (transporter) return transporter;
   
-  console.log("[Mailer] Checking SMTP configuration...");
+  console.log("[Mailer] Creating Gmail transporter...");
   console.log("[Mailer] SMTP_HOST:", SMTP_HOST);
   console.log("[Mailer] SMTP_PORT:", SMTP_PORT);
-  console.log("[Mailer] SMTP_SECURE:", SMTP_SECURE);
   console.log("[Mailer] SMTP_USER:", SMTP_USER);
-  console.log("[Mailer] SMTP_PASS:", SMTP_PASS ? "***configured***" : "MISSING");
   console.log("[Mailer] FROM_EMAIL:", FROM_EMAIL);
   
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
-    const msg = `SMTP config missing! SMTP_HOST=${SMTP_HOST}, SMTP_USER=${SMTP_USER}, SMTP_PASS=${SMTP_PASS ? 'SET' : 'MISSING'}`;
+  if (!SMTP_USER || !SMTP_PASS) {
+    const msg = "SMTP credentials missing! Set SMTP_USER and SMTP_PASS in .env";
     console.error("[Mailer] ❌", msg);
     throw new Error(msg);
   }
   
-  console.log("[Mailer] Creating nodemailer transporter...");
+  // Gmail-specific configuration
   transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: SMTP_SECURE, // true for 465, false for 587/other ports
+    service: 'gmail', // Use Gmail service (auto-configures host/port)
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS,
     },
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 15000, // 15 seconds for socket
-    // For port 587, enable STARTTLS
-    requireTLS: !SMTP_SECURE,
+    // Fallback manual config if service fails
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: false, // Use STARTTLS
     tls: {
-      ciphers: 'SSLv3',
-      rejectUnauthorized: false
-    },
-    debug: true, // Enable debug output
-    logger: true // Enable logger
+      rejectUnauthorized: false,
+      minVersion: 'TLSv1.2'
+    }
   });
-  console.log("[Mailer] ✅ Transporter created successfully");
+  
+  console.log("[Mailer] ✅ Transporter created");
   return transporter;
 }
 
 async function sendMail(to, subject, text, html) {
   try {
-    console.log("[Mailer] ========== START EMAIL SEND ==========");
+    console.log("[Mailer] ========== SENDING EMAIL ==========");
     console.log("[Mailer] To:", to);
     console.log("[Mailer] Subject:", subject);
-    console.log("[Mailer] Text length:", text?.length || 0);
-    console.log("[Mailer] HTML length:", html?.length || 0);
     
     const t = getTransporter();
     
-    console.log("[Mailer] Calling sendMail...");
     const info = await t.sendMail({
       from: FROM_EMAIL,
       to,
@@ -82,20 +63,15 @@ async function sendMail(to, subject, text, html) {
     
     console.log("[Mailer] ✅ Email sent successfully!");
     console.log("[Mailer] MessageId:", info.messageId);
-    console.log("[Mailer] Response:", info.response);
-    console.log("[Mailer] ========== END EMAIL SEND ==========");
+    console.log("[Mailer] ========================================");
     return info;
   } catch (err) {
-    console.error("[Mailer] ========== EMAIL SEND FAILED ==========");
-    console.error("[Mailer] Error message:", err.message);
-    console.error("[Mailer] Error code:", err.code);
-    console.error("[Mailer] Error stack:", err.stack);
-    if (err.response) console.error("[Mailer] SMTP Response:", err.response);
-    if (err.responseCode) console.error("[Mailer] Response Code:", err.responseCode);
-    console.error("[Mailer] ==========================================");
+    console.error("[Mailer] ❌ EMAIL SEND FAILED");
+    console.error("[Mailer] Error:", err.message);
+    console.error("[Mailer] Code:", err.code);
+    console.error("[Mailer] ========================================");
     throw err;
   }
 }
 
-  module.exports = { sendMail };
-}
+module.exports = { sendMail };
