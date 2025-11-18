@@ -16,8 +16,9 @@ class PartnerController {
       });
       res.status(200).json(partners);
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Gagal mengambil data mitra" });
+      console.error("[PartnerController.getAll] ERROR:", err.message);
+      console.error("[PartnerController.getAll] Stack:", err.stack);
+      res.status(500).json({ message: "Gagal mengambil data mitra", error: err.message });
     }
   }
 
@@ -39,8 +40,9 @@ class PartnerController {
       });
       res.status(201).json(partner);
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Gagal membuat mitra" });
+      console.error("[PartnerController.create] ERROR:", err.message);
+      console.error("[PartnerController.create] Stack:", err.stack);
+      res.status(500).json({ message: "Gagal membuat mitra", error: err.message });
     }
   }
 
@@ -73,8 +75,9 @@ class PartnerController {
       await partner.save();
       res.status(200).json(partner);
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Gagal memperbarui mitra" });
+      console.error("[PartnerController.update] ERROR:", err.message);
+      console.error("[PartnerController.update] Stack:", err.stack);
+      res.status(500).json({ message: "Gagal memperbarui mitra", error: err.message });
     }
   }
 
@@ -113,8 +116,9 @@ class PartnerController {
 
       res.status(200).json({ message: "Mitra dan cabang terkait dihapus" });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Gagal menghapus mitra" });
+      console.error("[PartnerController.remove] ERROR:", err.message);
+      console.error("[PartnerController.remove] Stack:", err.stack);
+      res.status(500).json({ message: "Gagal menghapus mitra", error: err.message });
     }
   }
 }
