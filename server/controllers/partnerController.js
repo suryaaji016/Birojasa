@@ -18,7 +18,9 @@ class PartnerController {
     } catch (err) {
       console.error("[PartnerController.getAll] ERROR:", err.message);
       console.error("[PartnerController.getAll] Stack:", err.stack);
-      res.status(500).json({ message: "Gagal mengambil data mitra", error: err.message });
+      res
+        .status(500)
+        .json({ message: "Gagal mengambil data mitra", error: err.message });
     }
   }
 
@@ -26,7 +28,7 @@ class PartnerController {
     try {
       const { name, parentId } = req.body;
       const isMain = !parentId;
-      let logoUrl = null;
+      let logoUrl = ""; // Default to empty string to avoid NOT NULL constraint
       if (req.file && req.file.filename) {
         // store relative path to be served from /uploads
         logoUrl = `/uploads/partners/${req.file.filename}`;
@@ -42,7 +44,9 @@ class PartnerController {
     } catch (err) {
       console.error("[PartnerController.create] ERROR:", err.message);
       console.error("[PartnerController.create] Stack:", err.stack);
-      res.status(500).json({ message: "Gagal membuat mitra", error: err.message });
+      res
+        .status(500)
+        .json({ message: "Gagal membuat mitra", error: err.message });
     }
   }
 
@@ -77,7 +81,9 @@ class PartnerController {
     } catch (err) {
       console.error("[PartnerController.update] ERROR:", err.message);
       console.error("[PartnerController.update] Stack:", err.stack);
-      res.status(500).json({ message: "Gagal memperbarui mitra", error: err.message });
+      res
+        .status(500)
+        .json({ message: "Gagal memperbarui mitra", error: err.message });
     }
   }
 
@@ -118,7 +124,9 @@ class PartnerController {
     } catch (err) {
       console.error("[PartnerController.remove] ERROR:", err.message);
       console.error("[PartnerController.remove] Stack:", err.stack);
-      res.status(500).json({ message: "Gagal menghapus mitra", error: err.message });
+      res
+        .status(500)
+        .json({ message: "Gagal menghapus mitra", error: err.message });
     }
   }
 }

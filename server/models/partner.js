@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       logoUrl: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: "", // Workaround: set empty string if database doesn't allow NULL
       },
       isMain: {
         type: DataTypes.BOOLEAN,
