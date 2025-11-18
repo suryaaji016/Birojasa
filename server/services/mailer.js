@@ -1,5 +1,14 @@
 const nodemailer = require("nodemailer");
 
+// Check if should use Resend instead of SMTP
+const USE_RESEND = process.env.USE_RESEND === "true";
+
+if (USE_RESEND) {
+  console.log("[Mailer] ✅ Using Resend API (SMTP ports blocked)");
+  module.exports = require("./mailer-resend");
+} else {
+  console.log("[Mailer] Using SMTP Gmail");
+
 // Configure via env vars
 const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
 const SMTP_PORT = Number(process.env.SMTP_PORT || "587");
@@ -75,3 +84,4 @@ async function sendMail(to, subject, text, html) {
 }
 
 module.exports = { sendMail };
+}
