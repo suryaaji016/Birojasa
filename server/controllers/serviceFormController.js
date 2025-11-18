@@ -11,8 +11,13 @@ class ServiceFormController {
 
       const { WA_TANGERANG, WA_BEKASI, WA_JAKARTA, WA_DEFAULT } = process.env;
       // email routing envs
-      const { EMAIL_TANGERANG, EMAIL_BEKASI, EMAIL_JAKARTA, EMAIL_DEFAULT } =
-        process.env;
+      const { 
+        EMAIL_DEFAULT,
+        EMAIL_VINNOJAYA_PEKAYON,
+        EMAIL_VINNOJAYA_TAMAN_GALAXY,
+        SMTP_HOST,
+        SMTP_USER 
+      } = process.env;
 
       // normalize cabang: trim, collapse spaces, lowercase
       const branchRaw = (cabang || "").trim().toLowerCase();
@@ -46,20 +51,23 @@ class ServiceFormController {
       const { sendMail } = require("../services/mailer");
 
       // Choose email based on cabang
-      const toEmail =
-        branchKey === "tangerang" && EMAIL_TANGERANG
-          ? EMAIL_TANGERANG
-          : branchKey === "bekasi" && EMAIL_BEKASI
-          ? EMAIL_BEKASI
-          : branchKey === "jakarta" && EMAIL_JAKARTA
-          ? EMAIL_JAKARTA
-          : EMAIL_DEFAULT || "";
+      // Map cabang to email addresses
+      let toEmail = EMAIL_DEFAULT || "";
+      
+      if (branchKey.includes("pekayon") && EMAIL_VINNOJAYA_PEKAYON) {
+        toEmail = EMAIL_VINNOJAYA_PEKAYON;
+      } else if ((branchKey.includes("galaxy") || branchKey.includes("taman")) && EMAIL_VINNOJAYA_TAMAN_GALAXY) {
+        toEmail = EMAIL_VINNOJAYA_TAMAN_GALAXY;
+      }
+      // else use EMAIL_DEFAULT
 
       console.log(
-        "[ServiceForm] Attempting immediate send for cabang:",
-        branchKey,
-        "to:",
-        toEmail
+        "[ServiceForm] Email config check:",
+        "\n  - SMTP_HOST:", SMTP_HOST,
+        "\n  - SMTP_USER:", SMTP_USER,
+        "\n  - EMAIL_DEFAULT:", EMAIL_DEFAULT,
+        "\n  - Branch:", branchKey,
+        "\n  - Sending to:", toEmail
       );
 
       // Build email body
@@ -102,6 +110,8 @@ class ServiceFormController {
       // Try immediate send with both text and html - with timeout
       if (toEmail) {
         try {
+          console.log("[ServiceForm] Starting email send process...");
+          
           // Set timeout wrapper for email sending
           const emailPromise = sendMail(
             toEmail,
@@ -129,15 +139,20 @@ class ServiceFormController {
         } catch (err) {
           console.error(
             "[ServiceForm] ❌ Immediate email send failed:",
-            err.message || err
+            "\n  - Error:", err.message,
+            "\n  - Stack:", err.stack,
+            "\n  - Code:", err.code,
+            "\n  - Response:", err.response
           );
           // Don't fail the request, just log the error
           emailSent = false;
         }
       } else {
         console.warn(
-          "[ServiceForm] ⚠️ No email configured for cabang:",
-          branchKey
+          "[ServiceForm] ⚠️ No email configured!",
+          "\n  - toEmail:", toEmail,
+          "\n  - EMAIL_DEFAULT:", EMAIL_DEFAULT,
+          "\n  - cabang:", branchKey
         );
       }
 
